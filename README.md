@@ -15,4 +15,4 @@ Deploying Rancher RKE2 Kubernetes to AWS GovCloud with Istio involves several st
 
 ### 1. **Set Up AWS Infrastructure with Terraform**
 
-First, create a Terraform configuration to set up the required AWS infrastructure
+First, create a Terraform configuration to set up the required AWS infrastructure (saved as main.tf in this repo)
