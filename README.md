@@ -58,6 +58,15 @@ curl -sfL https://get.rke2.io | sudo INSTALL_RKE2_VERSION='v1.30.2+rke2r1' INSTA
 sudo systemctl enable rke2-agent.service
 sudo systemctl start rke2-agent.service
 
+# Install Kubectl on Amazon Linux 2
+
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.30.2/2024-07-12/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+kubectl version --client
+
+
 # Modify the agent config file to point to the server
 sudo mkdir -p /etc/rancher/rke2/
 echo "server: https://<RKE2_SERVER_PRIVATE_IP>:9345" | sudo tee /etc/rancher/rke2/config.yaml
