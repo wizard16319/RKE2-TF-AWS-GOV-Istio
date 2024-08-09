@@ -1,4 +1,4 @@
-#### Terraform Configuration
+#### Fixed AMI issues, fixed conflict with Subnets, fixed resource parameter types, works as of 08--08 for testing
 provider "aws" {
   region = "us-gov-west-1"
 }
@@ -51,10 +51,10 @@ resource "aws_security_group" "rke2" {
 }
 
 resource "aws_instance" "rke2_server" {
-  ami           = "ami-0c55b159cbfafe1f0" # Ubuntu 20.04 LTS for GovCloud
+  ami           = "ami-0e7315f6773f0b25e"  # To get your ami run this command: aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn2-ami-hvm-*-x86_64-gp2" --query "Images[*].[ImageId,CreationDate]" --region us-gov-west-1 --output text | sort -k2 -r | head -n 1
   instance_type = "t3.medium"
   subnet_id     = aws_subnet.subnet_a.id
-  security_groups = [aws_security_group.rke2.name]
+  vpc_security_group_ids = [aws_security_group.rke2.id]  # Use vpc_security_group_ids instead of security_group_ids was the fix here
 
   tags = {
     Name = "RKE2-Server"
@@ -63,12 +63,12 @@ resource "aws_instance" "rke2_server" {
 
 resource "aws_instance" "rke2_agent" {
   count         = 2
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-0e7315f6773f0b25e"  # Replace with a valid AMI ID from the above command
   instance_type = "t3.medium"
   subnet_id     = aws_subnet.subnet_a.id
-  security_groups = [aws_security_group.rke2.name]
+  vpc_security_group_ids = [aws_security_group.rke2.id]  # Use vpc_security_group_ids instead of security_group_ids
 
   tags = {
-    Name = "RKE2-Agent"
+    Name = "RKE2-Agent-${count.index + 1}"
   }
 }
