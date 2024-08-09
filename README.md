@@ -13,9 +13,13 @@ Deploying Rancher RKE2 Kubernetes to AWS GovCloud with Istio involves several st
 6. **Helm**: Package manager for Kubernetes.
 7. **Istioctl**: CLI tool for managing Istio.
 
-### 1. **Set Up AWS Infrastructure with Terraform** RTFM - Terraform Init, Plan and Apply Yolo Shit
 
 First, create a Terraform configuration to set up the required AWS infrastructure (saved as main.tf in this repo)
+
+
+### 1. **Set Up AWS Infrastructure with Terraform** RTFM - Terraform Init, Plan and Apply Yolo Shit
+
+
 
 
 ### ### 2. **Install RKE2 on EC2 Instances**
