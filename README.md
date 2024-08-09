@@ -53,7 +53,7 @@ sudo chmod 600 ~/.kube/config
 ```bash
 sudo amazon-linux-extras enable selinux-ng
 sudo yum install selinux-policy-targeted
-curl -sfL https://get.rke2.io | sudo INSTALL_RKE2_VERSION='v1.30.2+rke2r1' INSTALL_RKE2_TYPE='server' INSTALL_RKE2_METHOD=rpm sh -
+curl -sfL https://get.rke2.io | sudo INSTALL_RKE2_VERSION='v1.30.2+rke2r1' INSTALL_RKE2_TYPE='agent' INSTALL_RKE2_METHOD=rpm sh -
 # This will not work with Amazon Linux 2 due to SE linux so the Rancher Guide is busted so use my workaround above:   sudo curl -sfL https://get.rke2.io | sudo sh -
 sudo systemctl enable rke2-agent.service
 sudo systemctl start rke2-agent.service
