@@ -49,7 +49,7 @@ resource "aws_security_group" "rke2" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+# Testing new AMI ami-0a0eef34ee77351a3
 resource "aws_instance" "rke2_server" {
   ami           = "ami-0e7315f6773f0b25e"  # To get your ami run this command: aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn2-ami-hvm-*-x86_64-gp2" --query "Images[*].[ImageId,CreationDate]" --region us-gov-west-1 --output text | sort -k2 -r | head -n 1
   instance_type = "t3.medium"
