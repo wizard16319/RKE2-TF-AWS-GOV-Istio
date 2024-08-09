@@ -91,12 +91,4 @@ kubectl get svc istio-ingressgateway -n istio-system
 
 Navigate to the external IP to access the application.
 
-### 6. **Configure AWS Config for Security Monitoring**
 
-Ensure AWS Config is enabled to monitor and detect misconfigurations.
-
-#### Enable AWS Config
-```bash
-aws configservice put-configuration-recorder --configuration-recorder name=default,roleARN=<your-role-arn> --region us-gov-west-1
-aws configservice start-configuration-recorder --configuration-recorder-name default --region us-gov-west-1
-```
